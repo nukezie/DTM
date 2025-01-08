@@ -1,13 +1,12 @@
 # Dynamic Tunnel Manager (DTM)
 
 ## Creator's Note
+I created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunnelling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
 
-Hi! I'm a passionate developer who created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunneling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
+The idea for DTM came from a simple question: "What if the target kept moving?" By implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunnelling and port rotation features, I'm actively seeking collaboration from the community, especially in:
 
-The idea for DTM came from a simple question: "What if the target kept moving?" By implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunneling and port rotation features, I'm actively seeking collaboration from the community, especially in:
-
-1. **AI Integration**: The GPT-4 integration needs improvement to provide better security analysis
-2. **State Security**: The PGP-based security system requires expertise to properly implement
+1. **AI Integration**: The GPT-4 integration needs improvement to provide a better security analysis
+2. **State Security**: The PGP-based security system requires expertise to implement properly
 3. **Performance Optimization**: Ensuring smooth operation with minimal resource usage
 
 I believe in open collaboration and welcome contributions from security experts, developers, and enthusiasts who share the vision of making application security more dynamic and resilient. If you're interested in contributing, especially in the areas marked as TODO, please reach out!
@@ -61,7 +60,7 @@ class SecureStateManager:
    - Secure cleanup procedures
 
 2. **State Management**
-   - Integration with main application state
+   - Integration with the main application state
    - Secure configuration storage
    - Runtime state protection
 
@@ -115,9 +114,9 @@ Please consider contributing to these critical areas. The core functionality wor
 ## 🚨 TODO: Critical Updates Required
 
 ### 1. AI Analysis Integration Fix
-- Update OpenAI API implementation to latest standards
+- Update OpenAI API implementation to the latest standards
 - Implement proper JSON response handling
-- Add retry mechanism for API failures
+- Add a retry mechanism for API failures
 - Enhance analysis context with more detailed application metrics
 - Implement rate limiting and error handling
 - Add caching for repeated analysis requests
@@ -161,7 +160,7 @@ A secure and automated system for managing dynamic, encrypted tunnels for networ
 - Security metrics display
 - Interactive controls
 - Scrollable process list
-- AI analysis results view
+- AI analysis results in view
 
 ## State Security System
 
