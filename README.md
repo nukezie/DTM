@@ -212,8 +212,8 @@ The state security system provides multiple layers of protection:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dynamic-tunnel-manager.git
-cd dynamic-tunnel-manager
+git clone https://github.com/nukezie/DTMN.git
+cd DTMN
 ```
 
 2. Create and activate a virtual environment:
