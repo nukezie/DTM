@@ -786,7 +786,3 @@ MIT License - See LICENSE file for details.
 - Python Cryptography Community
 - Security Researchers
 - Open Source Contributors
-
----
-
-*Last Updated: January 2024* 
