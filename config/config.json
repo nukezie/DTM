@@ -1,0 +1,31 @@
+{
+    "openai_api_key": "",
+    "port_range": [
+        5000,
+        6000
+    ],
+    "rotation_interval": 10,
+    "auto_tunnel": true,
+    "ai_analysis": {
+        "enabled": true,
+        "model": "gpt-4",
+        "temperature": 0.2,
+        "max_tokens": 1000,
+        "security_threshold": 0.7,
+        "scan_interval": 60
+    },
+    "logging": {
+        "level": "INFO",
+        "format": "JSON",
+        "file": "logs/dtm.json"
+    },
+    "ui": {
+        "refresh_rate": 4,
+        "items_per_page": 10,
+        "colors": {
+            "header": "blue",
+            "table": "cyan",
+            "analysis": "magenta"
+        }
+    }
+}
