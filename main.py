@@ -38,7 +38,7 @@ class DTMApplication:
         self.app_discovery = ApplicationDiscovery()
         self.tunnel_manager = TunnelManager()
         self.port_nuker = PortNuker()
-        self.ai_analyzer = AIAnalyzer(api_key=self.config.get("openai_api_key", ""))
+        self.ai_analyzer = AIAnalyzer(config=self.config)
         self.ui = DTMUI(config=self.config)
         
         # Internal state
@@ -52,17 +52,26 @@ class DTMApplication:
             if not config_path.exists():
                 # Create default configuration if it doesn't exist
                 config = {
-                    "openai_api_key": "",  # User needs to set this
+                    "openrouter": {
+                        "api_key": "",
+                        "base_url": "https://openrouter.ai/api/v1",
+                        "model": "openai/gpt-4",
+                        "fallback_model": "anthropic/claude-2",
+                        "repo_url": "https://github.com/nukezie/dtm"
+                    },
                     "port_range": [5000, 6000],
                     "rotation_interval": 10,
                     "auto_tunnel": True,
                     "ai_analysis": {
                         "enabled": True,
-                        "model": "gpt-3.5-turbo",
-                        "temperature": 0.3,
-                        "max_tokens": 500,
+                        "temperature": 0.2,
+                        "max_tokens": 1000,
                         "security_threshold": 0.7,
-                        "scan_interval": 60
+                        "scan_interval": 60,
+                        "headers": {
+                            "HTTP-Referer": "https://github.com/nukezie/dtm",
+                            "X-Title": "Dynamic Tunnel Manager"
+                        }
                     },
                     "logging": {
                         "level": "INFO",
@@ -87,24 +96,33 @@ class DTMApplication:
             
             with open(config_path) as f:
                 config = json.load(f)
-                if not config.get("openai_api_key"):
-                    self.logger.warning("OpenAI API key not set in config/config.json")
+                if not config.get("openrouter", {}).get("api_key"):
+                    self.logger.warning("OpenRouter API key not set in config/config.json")
                 return config
                 
         except Exception as e:
             self.logger.error(f"Failed to load configuration: {str(e)}", exc_info=True)
             return {
-                "openai_api_key": "",
+                "openrouter": {
+                    "api_key": "",
+                    "base_url": "https://openrouter.ai/api/v1",
+                    "model": "openai/gpt-4",
+                    "fallback_model": "anthropic/claude-2",
+                    "repo_url": "https://github.com/nukezie/dtm"
+                },
                 "port_range": [5000, 6000],
                 "rotation_interval": 10,
                 "auto_tunnel": True,
                 "ai_analysis": {
                     "enabled": True,
-                    "model": "gpt-3.5-turbo",
-                    "temperature": 0.3,
-                    "max_tokens": 500,
+                    "temperature": 0.2,
+                    "max_tokens": 1000,
                     "security_threshold": 0.7,
-                    "scan_interval": 60
+                    "scan_interval": 60,
+                    "headers": {
+                        "HTTP-Referer": "https://github.com/nukezie/dtm",
+                        "X-Title": "Dynamic Tunnel Manager"
+                    }
                 },
                 "logging": {
                     "level": "INFO",
@@ -187,18 +205,22 @@ class DTMApplication:
                     self.running = False
                 elif keyboard.is_pressed('t'):
                     self.ui.handle_input('t')
-                elif keyboard.is_pressed('a'):
-                    self.ui.handle_input('a')
                 elif keyboard.is_pressed('r'):
                     self.ui.handle_input('r')
                 elif keyboard.is_pressed('p'):
                     self.ui.handle_input('p')
+                elif keyboard.is_pressed('tab'):
+                    self.ui.handle_input('tab')
                 elif keyboard.is_pressed('escape'):
                     self.ui.handle_input('escape')
                 elif keyboard.is_pressed('up'):
                     self.ui.handle_input('up')
                 elif keyboard.is_pressed('down'):
                     self.ui.handle_input('down')
+                elif keyboard.is_pressed('left'):
+                    self.ui.handle_input('left')
+                elif keyboard.is_pressed('right'):
+                    self.ui.handle_input('right')
                 elif keyboard.is_pressed('backspace'):
                     self.ui.handle_input('backspace')
                 elif keyboard.is_pressed('enter'):
@@ -223,6 +245,16 @@ class DTMApplication:
                 return
 
             app_info = self.app_discovery.applications[pid]
+            # Add DTM state information to app_info
+            app_info.tunnel_info = self.tunnel_manager.tunnels.get(pid)
+            app_info.tunnel_port = self.port_nuker.port_assignments.get(pid)
+            app_info.dtm_state = {
+                "is_tunneled": pid in self.tunnel_manager.tunnels,
+                "tunnel_port": self.port_nuker.port_assignments.get(pid),
+                "auto_tunnel": self.config["auto_tunnel"],
+                "last_rotation": self.port_nuker.last_rotation
+            }
+            
             analysis = await self.ai_analyzer.analyze_application(app_info)
             self.ui.add_analysis_result(pid, analysis)
             
