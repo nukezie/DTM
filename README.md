@@ -892,8 +892,7 @@ To fully implement these security features:
 MIT License - See LICENSE file for details.
 
 ## Acknowledgments
-
-- OpenAI for GPT-4 API
+- OpenRouter API
 - Python Cryptography Community
 - Security Researchers
 - Open Source Contributors
