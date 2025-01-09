@@ -1,12 +1,61 @@
 # Dynamic Tunnel Manager (DTM)
 
+## 🚨 TODO & Current Status
+
+### UI & Navigation
+- [x] Rich CLI interface with live updates
+- [x] Process status visualization
+- [x] Scrollable process list with pagination
+- [x] AI analysis results view with pagination
+- [x] Arrow key navigation between views
+- [x] Group process analysis display
+- [x] Process selection interface
+- [ ] Web interface for remote management
+- [ ] Mobile monitoring interface
+
+### AI Analysis Integration
+- [x] OpenRouter API integration
+- [x] Group process analysis
+- [x] Basic error handling
+- [x] Process context gathering
+- [ ] Proper JSON response handling
+- [ ] Retry mechanism for API failures
+- [ ] Rate limiting implementation
+- [ ] Analysis result caching
+- [ ] Enhanced application metrics
+- [ ] Custom model training support
+
+### State Security Integration
+- [x] Basic certificate management
+- [x] Initial state security implementation
+- [x] Group-based security analysis
+- [ ] PGP-based state encryption system
+- [ ] Secure memory management for keys
+- [ ] Certificate rotation and verification
+- [ ] Secure backup and recovery mechanisms
+- [ ] Runtime security verification
+- [ ] State integrity checking
+- [ ] Hardware security module support
+- [ ] TPM integration
+
+### Performance & Optimization
+- [x] Basic UI responsiveness
+- [x] Process monitoring
+- [x] Memory usage optimization
+- [x] Grouped API calls
+- [ ] Resource usage reduction
+- [ ] Startup time improvement
+- [ ] Operation speed increase
+- [ ] Network performance optimization
+
 ## Creator's Note
-I created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunnelling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
 
-The idea for DTM came from a simple question: "What if the target kept moving?" By implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunnelling and port rotation features, I'm actively seeking collaboration from the community, especially in:
+Hi! I created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunneling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
 
-1. **AI Integration**: The GPT-4 integration needs improvement to provide a better security analysis
-2. **State Security**: The PGP-based security system requires expertise to implement properly
+The idea for DTM came from a simple question: "What if the target kept moving?" By implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunneling and port rotation features, I'm actively seeking collaboration from the community, especially in:
+
+1. **AI Integration**: The GPT-4 integration needs improvement to provide better security analysis
+2. **State Security**: The PGP-based security system requires expertise to properly implement
 3. **Performance Optimization**: Ensuring smooth operation with minimal resource usage
 
 I believe in open collaboration and welcome contributions from security experts, developers, and enthusiasts who share the vision of making application security more dynamic and resilient. If you're interested in contributing, especially in the areas marked as TODO, please reach out!
@@ -60,7 +109,7 @@ class SecureStateManager:
    - Secure cleanup procedures
 
 2. **State Management**
-   - Integration with the main application state
+   - Integration with main application state
    - Secure configuration storage
    - Runtime state protection
 
@@ -114,9 +163,9 @@ Please consider contributing to these critical areas. The core functionality wor
 ## 🚨 TODO: Critical Updates Required
 
 ### 1. AI Analysis Integration Fix
-- Update OpenAI API implementation to the latest standards
+- Update OpenAI API implementation to latest standards
 - Implement proper JSON response handling
-- Add a retry mechanism for API failures
+- Add retry mechanism for API failures
 - Enhance analysis context with more detailed application metrics
 - Implement rate limiting and error handling
 - Add caching for repeated analysis requests
@@ -140,6 +189,7 @@ A secure and automated system for managing dynamic, encrypted tunnels for networ
 - **Dynamic Port Rotation**: Automatic port changes every 10 seconds
 - **Traffic Isolation**: Secure encapsulation of application traffic
 - **State Security**: PGP-based encryption for all state data
+- **Group Process Analysis**: Automatic analysis of all instances of the same application
 
 ### AI-Driven Analysis
 - Real-time traffic pattern analysis
@@ -147,20 +197,138 @@ A secure and automated system for managing dynamic, encrypted tunnels for networ
 - Behavioral anomaly detection
 - Automatic threat response
 - Performance optimization recommendations
+- OpenRouter API integration with GPT-4
+- Grouped application analysis for better context
 
 ### Process Management
 - Automatic application discovery
 - Real-time connection monitoring
 - Process state tracking
 - Dynamic resource allocation
+- Multi-instance process handling
 
 ### User Interface
 - Rich CLI interface with live updates
 - Process status visualization
 - Security metrics display
 - Interactive controls
-- Scrollable process list
-- AI analysis results in view
+- Scrollable process list with pagination
+- AI analysis results view with pagination
+- Intuitive navigation between views
+- Group process analysis display
+
+## Interactive Controls
+
+### Main View
+- `↑/↓`: Scroll through processes
+- `→`: Switch to AI Analysis view
+- `T`: Toggle auto-tunneling
+- `R`: Force port rotation
+- `Q`: Quit
+
+### AI Analysis View
+- `←`: Switch back to Main view
+- `↑/↓`: Scroll through analyses
+- `P`: Analyze process (includes all instances)
+- `ESC`: Cancel input
+- `Q`: Quit
+
+### Process Selection
+- `↑/↓`: Navigate through processes
+- `ENTER`: Select process for analysis
+- `ESC`: Cancel selection
+
+## Configuration
+
+### Port Configuration
+- Default port range: 5000-6000
+- Rotation interval: 10 seconds
+- Configurable in `config/config.json`
+
+### Security Configuration
+- Certificate directory: `config/certificates/`
+- State directory: `~/.dtm/state/`
+- Backup directory: `~/.dtm/backups/`
+
+### AI Analysis Settings
+- Model: GPT-4 via OpenRouter
+- Analysis interval: 60 seconds
+- Security threshold: 0.7
+- Configurable in `config/config.json`
+
+## Recent Changes
+
+### UI Improvements
+- Implemented pagination for process list
+- Added scrolling functionality with visual indicators
+- Improved navigation between views using arrow keys
+- Enhanced process selection interface
+- Added group process analysis for better context
+
+### AI Analysis Enhancements
+- Integrated OpenRouter API for improved analysis
+- Added support for analyzing multiple instances of the same application
+- Enhanced analysis context with application state information
+- Improved error handling and retry mechanisms
+
+### Security Updates
+- Enhanced certificate management
+- Improved state security implementation
+- Added group-based security analysis
+- Enhanced memory protection mechanisms
+
+### Performance Optimizations
+- Improved UI responsiveness
+- Enhanced process monitoring
+- Optimized memory usage
+- Reduced API calls through grouped analysis
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/dynamic-tunnel-manager.git
+cd dynamic-tunnel-manager
+```
+
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Configure OpenRouter API:
+Create `config/config.json` with your OpenRouter API key:
+```json
+{
+    "openrouter": {
+        "api_key": "your-api-key-here",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "openai/gpt-4",
+        "fallback_model": "anthropic/claude-2"
+    }
+}
+```
+
+## Usage
+
+1. Start the Dynamic Tunnel Manager:
+```bash
+python main.py
+```
+
+2. Use arrow keys to navigate:
+   - Right arrow (→) to switch to AI Analysis
+   - Left arrow (←) to return to Main view
+   - Up/Down arrows (↑/↓) to scroll through lists
+   - Enter to select a process for analysis
+
+3. The application will automatically analyze all instances of the same process when selected.
 
 ## State Security System
 
@@ -207,66 +375,6 @@ The state security system provides multiple layers of protection:
 - OpenAI API key (for AI analysis)
 - GnuPG (for state security)
 - Required Python packages (see `requirements.txt`)
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/nukezie/DTMN.git
-cd DTMN
-```
-
-2. Create and activate a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure OpenAI API:
-Create `config/config.json` with your OpenAI API key:
-```json
-{
-    "openai_api_key": "your-api-key-here"
-}
-```
-
-## Usage
-
-1. Start the Dynamic Tunnel Manager:
-```bash
-python main.py
-```
-
-2. Interactive Controls:
-- `↑/↓`: Scroll through processes
-- `T`: Toggle auto-tunneling
-- `A`: Toggle AI analysis
-- `P`: Analyze specific PID
-- `R`: Force port rotation
-- `Q`: Quit
-
-## Configuration
-
-### Port Configuration
-- Default port range: 5000-6000
-- Rotation interval: 10 seconds
-- Configurable in `config/config.json`
-
-### Security Configuration
-- Certificate directory: `config/certificates/`
-- State directory: `~/.dtm/state/`
-- Backup directory: `~/.dtm/backups/`
-
-### AI Analysis Settings
-- Model: GPT-4
-- Analysis interval: 60 seconds
-- Security threshold: 0.7
-- Configurable in `config/config.json`
 
 ## Development
 
@@ -786,3 +894,7 @@ MIT License - See LICENSE file for details.
 - Python Cryptography Community
 - Security Researchers
 - Open Source Contributors
+
+---
+
+*Last Updated: January 2024* 
