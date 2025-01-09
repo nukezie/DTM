@@ -10,4 +10,5 @@ uvicorn>=0.24.0
 pydantic>=2.4.0
 python-multipart>=0.0.6
 aiohttp>=3.9.0
-keyboard>=0.13.5 
+keyboard>=0.13.5
+httpx>=0.25.0 
