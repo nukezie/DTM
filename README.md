@@ -50,12 +50,12 @@
 
 ## Creator's Note
 
-Hi! I created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunnelling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
+Hi! I created the Dynamic Tunnel Manager (DTM) out of a personal need to protect applications from local tampering. While I'm not a cybersecurity researcher, I noticed a significant gap in how traditional tunneling solutions handle local application security. Most existing solutions use static configurations that can be easily predicted and manipulated.
 
-The idea for DTM came by implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunnelling and port rotation features, I'm actively seeking collaboration from the community, especially in:
+The idea for DTM came from a simple question: "What if the target kept moving?" By implementing continuous port rotation and adding AI-powered analysis, I aimed to create a system where potential threats would face a constantly changing landscape. While I've successfully implemented the core tunneling and port rotation features, I'm actively seeking collaboration from the community, especially in:
 
-1. **AI Integration**: The GPT-4 integration needs improvement to provide a better security analysis
-2. **State Security**: The PGP-based security system requires expertise to implement properly
+1. **AI Integration**: The GPT-4 integration needs improvement to provide better security analysis
+2. **State Security**: The PGP-based security system requires expertise to properly implement
 3. **Performance Optimization**: Ensuring smooth operation with minimal resource usage
 
 I believe in open collaboration and welcome contributions from security experts, developers, and enthusiasts who share the vision of making application security more dynamic and resilient. If you're interested in contributing, especially in the areas marked as TODO, please reach out!
@@ -64,27 +64,27 @@ I believe in open collaboration and welcome contributions from security experts,
 
 ### Immediate Implementation Needs
 
-#### 1. GPT-4 Analysis Integration
-The AI analysis system currently faces implementation challenges:
+#### 1. OpenRouter Analysis Integration
+The AI analysis system currently needs improvements:
 ```python
-# Current implementation issue in ai_analysis.py
-async def _get_ai_recommendations(self, context: Dict[str, Any]) -> Dict[str, Any]:
-    try:
-        response = await self.client.chat.completions.create(
-            model="gpt-4",
-            messages=[...],
-            temperature=0.2,
-            max_tokens=1000
-        )
-        # Response handling needs improvement
+# Current implementation in ai_analysis.py
+async def analyze_application(self, app_info: ApplicationInfo) -> Dict[str, Any]:
+    """
+    Needed improvements:
+    - Proper error handling for API responses
+    - Retry mechanism for failed requests
+    - Rate limiting implementation
+    - Response validation
+    - Fallback model support
+    """
 ```
 
 **Help Needed:**
-- Proper implementation of the OpenAI API client
 - Structured JSON response handling
 - Retry mechanism for API failures
 - Rate limiting implementation
 - Response validation and error handling
+- Fallback model implementation
 
 #### 2. State Security Integration
 The `state_security.py` module provides robust security features but needs integration:
@@ -163,20 +163,23 @@ Please consider contributing to these critical areas. The core functionality wor
 ## 🚨 TODO: Critical Updates Required
 
 ### 1. AI Analysis Integration Fix
-- Update OpenAI API implementation to latest standards
-- Implement proper JSON response handling
-- Add retry mechanism for API failures
-- Enhance analysis context with more detailed application metrics
-- Implement rate limiting and error handling
-- Add caching for repeated analysis requests
+- [x] Update to OpenRouter API implementation
+- [ ] Implement proper JSON response handling
+- [ ] Add retry mechanism for API failures
+- [ ] Enhance analysis context with more detailed application metrics
+- [ ] Implement rate limiting and error handling
+- [ ] Add caching for repeated analysis requests
+- [ ] Improve error messages for failed analyses
+- [ ] Add fallback model support (Claude-2)
+- [ ] Implement streaming responses for real-time analysis
 
 ### 2. State Security Integration
-- Integrate PGP-based state encryption system
-- Implement secure memory management for keys
-- Add certificate rotation and verification
-- Setup secure backup and recovery mechanisms
-- Implement runtime security verification
-- Add state integrity checking
+- [ ] Integrate PGP-based state encryption system
+- [ ] Implement secure memory management for keys
+- [ ] Add certificate rotation and verification
+- [ ] Setup secure backup and recovery mechanisms
+- [ ] Implement runtime security verification
+- [ ] Add state integrity checking
 
 ## Overview
 
@@ -372,7 +375,7 @@ The state security system provides multiple layers of protection:
 ## Requirements
 
 - Python 3.9+
-- OpenAI API key (for AI analysis)
+- OpenRouter API key (for AI analysis)
 - GnuPG (for state security)
 - Required Python packages (see `requirements.txt`)
 
