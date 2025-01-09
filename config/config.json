@@ -1,5 +1,11 @@
 {
-    "openai_api_key": "",
+    "openrouter": {
+        "api_key": "API_KEY_HERE",
+        "base_url": "https://openrouter.ai/api/v1",
+        "model": "openai/gpt-4",
+        "fallback_model": "anthropic/claude-2",
+        "repo_url": "https://github.com/nukezie/dtm"
+    },
     "port_range": [
         5000,
         6000
@@ -8,11 +14,14 @@
     "auto_tunnel": true,
     "ai_analysis": {
         "enabled": true,
-        "model": "gpt-4",
         "temperature": 0.2,
         "max_tokens": 1000,
         "security_threshold": 0.7,
-        "scan_interval": 60
+        "scan_interval": 60,
+        "headers": {
+            "HTTP-Referer": "https://github.com/nukezie/dtm",
+            "X-Title": "Dynamic Tunnel Manager"
+        }
     },
     "logging": {
         "level": "INFO",
